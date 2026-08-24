@@ -1,6 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* =========================================================
+     BODY SCROLL LOCK (used by modals so the page behind
+     the popup can't scroll on mobile/touch devices)
+  ========================================================= */
+  function lockBodyScroll() {
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.dataset.scrollY = String(scrollY);
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  }
+
+  function unlockBodyScroll() {
+    const scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    delete document.body.dataset.scrollY;
+    window.scrollTo(0, scrollY);
+  }
+
+  /* =========================================================
      PAGE FADE IN
   ========================================================= */
   document.body.classList.add('loaded');
@@ -158,32 +183,20 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =========================================================
      PROJECT FILTERS + VIEW MORE / SHOW LESS
   ========================================================= */
-  const filterButtons = document.querySelectorAll('.filters button');
   const projectCards = Array.from(document.querySelectorAll('.project-card'));
   const viewMoreWrap = document.getElementById('viewMoreWrap');
   const viewMoreBtn = document.getElementById('viewMoreBtn');
   const projectsContainer = document.getElementById('projectsContainer');
 
-  const INITIAL_VISIBLE = 3;
-  let currentFilter = 'all';
+  const INITIAL_VISIBLE = 6;
   let showAllProjects = false;
 
   function renderProjects() {
-    const matching = projectCards.filter(
-      card => currentFilter === 'all' || card.getAttribute('data-category') === currentFilter
-    );
+    projectCards.forEach((card, i) => {
+      card.style.display = (showAllProjects || i < INITIAL_VISIBLE) ? 'block' : 'none';
+    });
 
-    projectCards.forEach(card => { card.style.display = 'none'; });
-
-    if (currentFilter === 'all' && !showAllProjects) {
-      matching.forEach((card, i) => {
-        card.style.display = i < INITIAL_VISIBLE ? 'block' : 'none';
-      });
-    } else {
-      matching.forEach(card => { card.style.display = 'block'; });
-    }
-
-    const canToggle = currentFilter === 'all' && matching.length > INITIAL_VISIBLE;
+    const canToggle = projectCards.length > INITIAL_VISIBLE;
     viewMoreWrap.style.display = canToggle ? 'block' : 'none';
 
     if (canToggle) {
@@ -192,16 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
         : "View More Projects <i class='bx bx-right-arrow-alt'></i>";
     }
   }
-
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentFilter = btn.getAttribute('data-filter');
-      showAllProjects = false;
-      renderProjects();
-    });
-  });
 
   viewMoreBtn.addEventListener('click', () => {
     showAllProjects = !showAllProjects;
@@ -261,12 +264,12 @@ document.addEventListener('DOMContentLoaded', () => {
     modalImg.alt = cert.title;
     modalTitle.textContent = cert.title;
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll();
   }
 
   function closeCertModal() {
     modal.classList.remove('active');
-    document.body.style.overflow = '';
+    unlockBodyScroll();
   }
 
   function showNextCert() {
@@ -305,63 +308,204 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =========================================================
      PROJECT DETAIL MODAL
   ========================================================= */
+  const projectsData = [
+    {
+      id: 'salon',
+      title: 'Salon Management System',
+      badge: 'Complete',
+      desc: 'A complete salon appointment Management system built for better experience.',
+      overview: 'A full-featured salon appointment management system that lets customers book services online while giving salon owners an easy way to manage bookings, staff and daily schedules.',
+      tech: [
+        { cls: 'html', icon: 'bxl-html5', label: 'HTML' },
+        { cls: 'css', icon: 'bxl-css3', label: 'CSS' },
+        { cls: 'js', icon: 'bxl-javascript', label: 'JavaScript' },
+        { cls: 'php', icon: 'bxl-php', label: 'PHP' }
+      ],
+      features: ['Online Appointment Booking', 'Admin Dashboard', 'Staff & Service Management', 'Fully Responsive Design'],
+      image: './images/salon.png',
+      live: '404.html'
+    },
+    {
+      id: 'portfolio',
+      title: 'Personal Portfolio',
+      badge: 'Complete',
+      desc: 'Modern responsive portfolio website.',
+      overview: 'This is my personal portfolio website built using HTML, CSS and JavaScript. It includes sections like About Me, Skills, Projects, Education and Contact.',
+      tech: [
+        { cls: 'html', icon: 'bxl-html5', label: 'HTML' },
+        { cls: 'css', icon: 'bxl-css3', label: 'CSS' },
+        { cls: 'js', icon: 'bxl-javascript', label: 'JavaScript' }
+      ],
+      features: ['Fully Responsive Design', 'Smooth Animations', 'Project Showcase', 'Contact Form'],
+      image: './images/portfolio.png',
+      live: '404.html'
+    },
+    {
+      id: 'bakery',
+      title: 'Sweet Delight Bakery',
+      badge: 'In Progress',
+      desc: 'Modern bakery website with smooth online cake ordering.',
+      overview: 'A modern bakery website designed for a smooth online cake ordering experience, showcasing a fresh menu with an easy, appetite-friendly browsing flow.',
+      tech: [
+        { cls: 'html', icon: 'bxl-html5', label: 'HTML' },
+        { cls: 'css', icon: 'bxl-css3', label: 'CSS' },
+        { cls: 'js', icon: 'bxl-javascript', label: 'JavaScript' }
+      ],
+      features: ['Online Cake Ordering', 'Menu Showcase', 'Responsive Layout', 'Smooth Animations'],
+      image: './images/bakery.png',
+      live: '404.html'
+    },
+    {
+      id: 'aurelia',
+      title: 'Aurelia Estates',
+      badge: 'Complete',
+      desc: 'A premium luxury villa booking website with immersive 3D animations, cinematic UI and fully responsive design.',
+      overview: 'A premium real-estate website for luxury villas, built with cinematic scroll-driven animations and an immersive, high-end user interface.',
+      tech: [
+        { cls: 'html', icon: 'bxl-html5', label: 'HTML' },
+        { cls: 'css', icon: 'bxl-css3', label: 'CSS' },
+        { cls: 'gsap', icon: 'bxs-zap', label: 'GSAP' },
+        { cls: 'lenis', icon: 'bx-mouse', label: 'Lenis' }
+      ],
+      features: ['Cinematic 3D Animations', 'Smooth Scroll Experience', 'Villa Booking Showcase', 'Fully Responsive Design'],
+      image: './images/villa%20website.png',
+      live: '404.html'
+    },
+    {
+      id: 'visionarc',
+      title: 'VisionArc Opticians',
+      badge: 'Complete',
+      desc: 'A sleek opticians website with elegant eyewear showcases and a smooth, easy browsing experience.',
+      overview: 'A modern eyewear brand website showcasing stylish frame collections with a clean, elegant browsing experience designed to highlight every product.',
+      tech: [
+        { cls: 'html', icon: 'bxl-html5', label: 'HTML' },
+        { cls: 'css', icon: 'bxl-css3', label: 'CSS' },
+        { cls: 'js', icon: 'bxl-javascript', label: 'JavaScript' }
+      ],
+      features: ['Product Showcase Gallery', 'Responsive Design', 'Smooth Hover Effects', 'Clean, Elegant UI'],
+      image: './images/visionarc.png',
+      live: '404.html'
+    },
+    {
+      id: 'veloria',
+      title: 'Veloria Timeless Elegance',
+      badge: 'In Progress',
+      desc: 'A luxury watches store website with a refined, elegant showcase for premium timepieces.',
+      overview: "A luxury watches store website designed to showcase premium timepieces with a refined, elegant layout that reflects the brand's high-end identity.",
+      tech: [
+        { cls: 'html', icon: 'bxl-html5', label: 'HTML' },
+        { cls: 'css', icon: 'bxl-css3', label: 'CSS' },
+        { cls: 'js', icon: 'bxl-javascript', label: 'JavaScript' }
+      ],
+      features: ['Premium Product Showcase', 'Elegant Minimal UI', 'Responsive Design', 'Smooth Animations'],
+      image: './images/veloria.png',
+      live: '404.html'
+    },
+    {
+      id: 'pranavwebstudio',
+      title: 'Pranav Web Studio',
+      badge: 'In Progress',
+      desc: 'My own web development business website, where I help clients get modern, professional websites built for their brand.',
+      overview: 'My own web development business website, built to showcase my services and help clients get modern, professional websites built for their brand.',
+      tech: [
+        { cls: 'react', icon: 'bxl-react', label: 'React' },
+        { cls: 'tailwind', icon: 'bxl-tailwind-css', label: 'Tailwind CSS' },
+        { cls: 'typescript', icon: 'bxl-typescript', label: 'TypeScript' }
+      ],
+      features: ['Service Showcase', 'Client Inquiry Form', 'Modern UI Design', 'Fully Responsive'],
+      image: './images/pranavwebstudio.png',
+      live: '404.html'
+    }
+  ];
+
   const projectModal = document.getElementById('projectModal');
   const projectModalTitle = document.getElementById('projectModalTitle');
   const projectModalImage = document.getElementById('projectModalImage');
   const projectModalDesc = document.getElementById('projectModalDesc');
+  const projectModalOverview = document.getElementById('projectModalOverview');
   const projectModalTech = document.getElementById('projectModalTech');
+  const projectModalFeatures = document.getElementById('projectModalFeatures');
   const projectModalBadge = document.getElementById('projectModalBadge');
   const projectModalLink = document.getElementById('projectModalLink');
   const closeProjectModalBtn = document.getElementById('closeProjectModal');
+  const projectPrevBtn = document.getElementById('projectPrevBtn');
+  const projectNextBtn = document.getElementById('projectNextBtn');
 
-  function openProjectModal(card) {
-    const img = card.querySelector('img');
-    const title = card.querySelector('h3')?.textContent || '';
-    const desc = card.querySelector('.content p')?.textContent || '';
-    const tech = card.querySelector('.tech')?.textContent || '';
-    const badge = card.querySelector('.badge')?.textContent || '';
-    const link = card.querySelector('.view-project-btn')?.getAttribute('data-link') || '';
+  let currentProjectIndex = 0;
 
-    projectModalTitle.textContent = title;
-    projectModalImage.src = img ? img.src : '';
-    projectModalImage.alt = title;
-    projectModalDesc.textContent = desc;
-    projectModalTech.textContent = tech;
-    projectModalBadge.textContent = badge;
+  function renderProjectModal(index) {
+    if (!projectsData[index]) return;
+    currentProjectIndex = index;
+    const p = projectsData[currentProjectIndex];
 
-    if (link) {
-      projectModalLink.href = link;
-      projectModalLink.style.display = 'inline-flex';
-    } else {
-      projectModalLink.style.display = 'none';
-    }
+    projectModalBadge.textContent = p.badge;
+    projectModalBadge.className = 'badge' + (p.badge === 'In Progress' ? ' processing' : '');
+
+    const words = p.title.split(' ');
+    const last = words.pop();
+    projectModalTitle.innerHTML = (words.length ? words.join(' ') + ' ' : '') + `<span>${last}</span>`;
+
+    projectModalDesc.textContent = p.desc;
+    projectModalOverview.textContent = p.overview;
+
+    projectModalTech.innerHTML = p.tech.map(t =>
+      `<div class="tech-chip"><span class="tech-icon ${t.cls}"><i class='bx ${t.icon}'></i></span>${t.label}</div>`
+    ).join('');
+
+    projectModalFeatures.innerHTML = p.features.map(f =>
+      `<li><i class='bx bxs-check-circle'></i> ${f}</li>`
+    ).join('');
+
+    projectModalImage.src = p.image;
+    projectModalImage.alt = p.title;
+
+    projectModalLink.href = p.live;
 
     projectModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll();
   }
 
   function closeProjectModal() {
     projectModal.classList.remove('active');
-    document.body.style.overflow = '';
+    unlockBodyScroll();
+  }
+
+  function showNextProject() {
+    renderProjectModal((currentProjectIndex + 1) % projectsData.length);
+  }
+
+  function showPrevProject() {
+    renderProjectModal((currentProjectIndex - 1 + projectsData.length) % projectsData.length);
+  }
+
+  function openProjectModalFromCard(card) {
+    const id = card.getAttribute('data-project');
+    const idx = projectsData.findIndex(p => p.id === id);
+    renderProjectModal(idx >= 0 ? idx : 0);
   }
 
   document.querySelectorAll('.view-project-btn').forEach(btn => {
-    btn.addEventListener('click', () => openProjectModal(btn.closest('.project-card')));
+    btn.addEventListener('click', () => openProjectModalFromCard(btn.closest('.project-card')));
   });
 
   document.querySelectorAll('.project-card .img-box img').forEach(img => {
     img.style.cursor = 'pointer';
-    img.addEventListener('click', () => openProjectModal(img.closest('.project-card')));
+    img.addEventListener('click', () => openProjectModalFromCard(img.closest('.project-card')));
   });
 
   if (closeProjectModalBtn) closeProjectModalBtn.addEventListener('click', closeProjectModal);
+  if (projectPrevBtn) projectPrevBtn.addEventListener('click', showPrevProject);
+  if (projectNextBtn) projectNextBtn.addEventListener('click', showNextProject);
 
   projectModal.addEventListener('click', (e) => {
     if (e.target === projectModal) closeProjectModal();
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && projectModal.classList.contains('active')) closeProjectModal();
+    if (!projectModal.classList.contains('active')) return;
+    if (e.key === 'Escape') closeProjectModal();
+    if (e.key === 'ArrowRight') showNextProject();
+    if (e.key === 'ArrowLeft') showPrevProject();
   });
 
   /* =========================================================

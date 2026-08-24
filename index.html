@@ -121,7 +121,7 @@
   </div>
 
   <div class="image-box">
-    <img src="images/home.png" alt="Pranav Jadhav">
+    <img src="./images/home.png" alt="Pranav Jadhav">
 
     <div class="card-row">
       <div class="card card1">
@@ -180,7 +180,7 @@
   <div class="about-left">
 
     <div class="image-box">
-      <img src="images/about2.png" alt="Pranav Jadhav profile">
+      <img src="./images/about2.png" alt="Pranav Jadhav profile">
     </div>
 
     <div class="motto">
@@ -218,7 +218,7 @@
       <div class="highlight-item">
         <div class="highlight-icon"><i class='bx bxs-graduation'></i></div>
         <h4>Currently Learning</h4>
-        <p>React.js, Node.js<br>&amp; Advanced JavaScript</p>
+        <p>React, Node.js, Express.js,<br>TypeScript &amp; MongoDB</p>
       </div>
 
       <div class="highlight-item">
@@ -271,7 +271,7 @@
     </div>
 
     <div class="drives-illustration">
-      <img src="images/laptop.png" alt="What drives me illustration">
+      <img src="./images/laptop.png" alt="What drives me illustration">
     </div>
 
   </div>
@@ -297,6 +297,8 @@
         <div class="tech-chip"><span class="tech-icon css"><i class='bx bxl-css3'></i></span>CSS3</div>
         <div class="tech-chip"><span class="tech-icon js"><i class='bx bxl-javascript'></i></span>JavaScript</div>
         <div class="tech-chip"><span class="tech-icon tailwind"><i class='bx bxl-tailwind-css'></i></span>Tailwind CSS</div>
+        <div class="tech-chip"><span class="tech-icon react"><i class='bx bxl-react'></i></span>React</div>
+        <div class="tech-chip"><span class="tech-icon typescript"><i class='bx bxl-typescript'></i></span>TypeScript</div>
       </div>
     </div>
 
@@ -360,19 +362,12 @@
   <div class="line"></div>
   <p class="sub">Here are some of the projects I've worked on.</p>
 
-  <div class="filters">
-    <button class="active" data-filter="all">All</button>
-    <button data-filter="web">Web Development</button>
-    <button data-filter="real estate">Real Estate</button>
-    <button data-filter="E-Commerce">E-Commerce</button>
-  </div>
-
   <div class="projects-container" id="projectsContainer">
 
-    <div class="project-card" data-category="web">
+    <div class="project-card" data-project="salon">
       <div class="img-box">
-        <img src="images/salon.png" alt="Salon Management System" loading="lazy">
-        <span class="badge">Web Development</span>
+        <img src="./images/salon.png" alt="Salon Management System" loading="lazy">
+        <span class="badge">Complete</span>
       </div>
       <div class="content">
         <h3>Salon Management System</h3>
@@ -382,10 +377,10 @@
       </div>
     </div>
 
-    <div class="project-card" data-category="web">
+    <div class="project-card" data-project="portfolio">
       <div class="img-box">
-        <img src="images/portfolio.png" alt="Personal Portfolio" loading="lazy">
-        <span class="badge">Web Development</span>
+        <img src="./images/portfolio.png" alt="Personal Portfolio" loading="lazy">
+        <span class="badge">Complete</span>
       </div>
       <div class="content">
         <h3>Personal Portfolio</h3>
@@ -395,28 +390,67 @@
       </div>
     </div>
 
-    <div class="project-card" data-category="E-Commerce">
+    <div class="project-card" data-project="bakery">
       <div class="img-box">
-        <img src="images/bakery.png" alt="Bakery Cake Order" loading="lazy">
-        <span class="badge">E-Commerce</span>
+        <img src="./images/bakery.png" alt="Sweet Delight Bakery" loading="lazy">
+        <span class="badge processing">In Progress</span>
       </div>
       <div class="content">
-        <h3>Bakery Cake Order</h3>
+        <h3>Sweet Delight Bakery</h3>
         <p>Modern bakery website with smooth online cake ordering.</p>
         <div class="tech">HTML • CSS • JS</div>
         <button type="button" class="link view-project-btn" data-link="">View Project <i class='bx bx-right-arrow-alt'></i></button>
       </div>
     </div>
 
-    <div class="project-card" data-category="real estate">
+    <div class="project-card" data-project="aurelia">
       <div class="img-box">
-        <img src="images/villa%20website.png" alt="Luxury Villa Website" loading="lazy">
-        <span class="badge">Real Estate</span>
+        <img src="./images/villa%20website.png" alt="Aurelia Estates" loading="lazy">
+        <span class="badge">Complete</span>
       </div>
       <div class="content">
-        <h3>Luxury Villa Website</h3>
+        <h3>Aurelia Estates</h3>
         <p>A premium luxury villa booking website with immersive 3D animations, cinematic UI and fully responsive design.</p>
         <div class="tech">HTML • CSS • GSAP • Lenis</div>
+        <button type="button" class="link view-project-btn" data-link="">View Project <i class='bx bx-right-arrow-alt'></i></button>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="visionarc">
+      <div class="img-box">
+        <img src="./images/visionarc.png" alt="VisionArc Opticians" loading="lazy">
+        <span class="badge">Complete</span>
+      </div>
+      <div class="content">
+        <h3>VisionArc Opticians</h3>
+        <p>A sleek opticians website with elegant eyewear showcases and a smooth, easy browsing experience.</p>
+        <div class="tech">HTML • CSS • JS</div>
+        <button type="button" class="link view-project-btn" data-link="">View Project <i class='bx bx-right-arrow-alt'></i></button>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="veloria">
+      <div class="img-box">
+        <img src="./images/veloria.png" alt="Veloria Timeless Elegance" loading="lazy">
+        <span class="badge processing">In Progress</span>
+      </div>
+      <div class="content">
+        <h3>Veloria Timeless Elegance</h3>
+        <p>A luxury watches store website with a refined, elegant showcase for premium timepieces.</p>
+        <div class="tech">HTML • CSS • JS</div>
+        <button type="button" class="link view-project-btn" data-link="">View Project <i class='bx bx-right-arrow-alt'></i></button>
+      </div>
+    </div>
+
+    <div class="project-card" data-project="pranavwebstudio">
+      <div class="img-box">
+        <img src="./images/pranavwebstudio.png" alt="Pranav Web Studio" loading="lazy">
+        <span class="badge processing">In Progress</span>
+      </div>
+      <div class="content">
+        <h3>Pranav Web Studio</h3>
+        <p>My own web development business website, where I help clients get modern, professional websites built for their brand.</p>
+        <div class="tech">React • Tailwind CSS • TypeScript</div>
         <button type="button" class="link view-project-btn" data-link="">View Project <i class='bx bx-right-arrow-alt'></i></button>
       </div>
     </div>
@@ -429,26 +463,49 @@
 
   <!-- PROJECT DETAIL MODAL -->
   <div class="modal" id="projectModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 id="projectModalTitle">Project Title</h2>
-        <button class="close-modal" id="closeProjectModal" type="button" aria-label="Close">
-          <i class='bx bx-x'></i>
-        </button>
-      </div>
+    <div class="modal-content project-modal-content">
 
-      <div class="modal-body project-modal-body">
-        <img src="" id="projectModalImage" alt="">
+      <button class="close-modal project-close" id="closeProjectModal" type="button" aria-label="Close">
+        <i class='bx bx-x'></i>
+      </button>
 
-        <div class="project-modal-info">
-          <span class="badge" id="projectModalBadge"></span>
-          <p id="projectModalDesc"></p>
-          <div class="tech" id="projectModalTech"></div>
-          <a href="#" id="projectModalLink" class="primary" target="_blank" rel="noopener">
-            Visit Live Site <i class='bx bx-link-external'></i>
-          </a>
+      <div class="project-modal-grid">
+
+        <div class="project-modal-left">
+          <span class="badge" id="projectModalBadge">Complete</span>
+
+          <h2 class="project-modal-title" id="projectModalTitle">Project Title</h2>
+
+          <p class="project-modal-tagline" id="projectModalDesc"></p>
+
+          <h4 class="pm-heading">Overview</h4>
+          <p class="pm-overview" id="projectModalOverview"></p>
+
+          <h4 class="pm-heading">Tech Stack</h4>
+          <div class="pm-tech-stack" id="projectModalTech"></div>
+
+          <h4 class="pm-heading">Features</h4>
+          <ul class="pm-features" id="projectModalFeatures"></ul>
+
+          <h4 class="pm-heading">Project Links</h4>
+          <div class="pm-links">
+            <a href="404.html" id="projectModalLink" class="pm-live-btn" rel="noopener">
+              <i class='bx bx-link-external'></i> Live Project
+            </a>
+          </div>
         </div>
+
+        <div class="project-modal-right">
+          <img src="" id="projectModalImage" alt="">
+        </div>
+
       </div>
+
+      <div class="modal-footer project-modal-footer">
+        <button id="projectPrevBtn" type="button"><i class='bx bx-chevron-left'></i> Previous</button>
+        <button id="projectNextBtn" type="button">Next <i class='bx bx-chevron-right'></i></button>
+      </div>
+
     </div>
   </div>
 
@@ -552,7 +609,7 @@
 
     <div class="certificate-card">
       <div class="certificate-image">
-        <img src="images/aspnet-certificate.jpg" alt="ASP.NET Certificate" loading="lazy">
+        <img src="./images/aspnet-certificate.jpg" alt="ASP.NET Certificate" loading="lazy">
       </div>
 
       <div class="certificate-content">
@@ -577,7 +634,7 @@
 
     <div class="certificate-card">
       <div class="certificate-image">
-        <img src="images/linux-certificate.jpg" alt="Linux Certificate" loading="lazy">
+        <img src="./images/linux-certificate.jpg" alt="Linux Certificate" loading="lazy">
       </div>
 
       <div class="certificate-content">

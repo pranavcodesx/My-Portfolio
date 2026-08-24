@@ -377,6 +377,7 @@ h1{
 h1 span{
   background:linear-gradient(45deg,#6a5cff,#a855f7);
   -webkit-background-clip:text;
+  background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
@@ -814,6 +815,7 @@ h1 span{
 .heading span{
   background:linear-gradient(45deg,#6a5cff,#a855f7);
   -webkit-background-clip:text;
+  background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
@@ -1096,6 +1098,8 @@ h1 span{
 .tech-icon.css{ background:#1572b6; }
 .tech-icon.js{ background:#f7df1e; color:#1a1a1a; }
 .tech-icon.tailwind{ background:rgba(56,189,248,.16); color:#38bdf8; }
+.tech-icon.react{ background:rgba(97,218,251,.16); color:#61dafb; }
+.tech-icon.typescript{ background:rgba(49,120,198,.18); color:#3178c6; }
 .tech-icon.mysql{ background:#4479a1; font-size:9.5px; }
 .tech-icon.php{ background:rgba(119,123,180,.2); color:#8892be; }
 .tech-icon.dotnet{ background:#5c2d91; font-size:9.5px; }
@@ -1105,6 +1109,8 @@ h1 span{
 .tech-icon.vscode{ background:rgba(0,122,204,.18); color:#3596f0; }
 .tech-icon.linux{ background:rgba(255,255,255,.1); color:#f7c948; }
 .tech-icon.xampp{ background:#fb7a24; font-size:10px; }
+.tech-icon.gsap{ background:rgba(136,206,2,.16); color:#88ce02; }
+.tech-icon.lenis{ background:rgba(45,212,191,.16); color:#2dd4bf; }
 
 /* Scroll-reveal for skill cards - relies on the base .skill-box transition (0.4s) so it doesn't override the hover transition */
 .skill-box{
@@ -1212,34 +1218,6 @@ h1 span{
   padding:35px 80px;
 }
 
-.filters{
-  margin-bottom:40px;
-}
-
-.filters button{
-  margin:5px;
-  padding:10px 20px;
-  border-radius:25px;
-  border:1px solid rgba(255,255,255,0.1);
-  background:rgba(255,255,255,0.05);
-  color:#aaa;
-  cursor:pointer;
-  transition:0.3s;
-  font-family:inherit;
-}
-
-.filters button:hover{
-  background:linear-gradient(45deg,#6a5cff,#a855f7);
-  color:white;
-  box-shadow:0 0 15px #a855f7;
-}
-
-.filters .active{
-  background:linear-gradient(45deg,#6a5cff,#a855f7);
-  color:white;
-  box-shadow:0 0 20px #a855f7;
-}
-
 .projects-container{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -1301,6 +1279,10 @@ h1 span{
   padding:5px 12px;
   border-radius:20px;
   font-size:12px;
+}
+
+.badge.processing{
+  background:linear-gradient(45deg,#f59e0b,#f97316);
 }
 
 .project-card .content{
@@ -1758,50 +1740,185 @@ h1 span{
 /* =========================================================
    PROJECT DETAIL MODAL
 ========================================================= */
-.project-modal-body{
-  justify-content:flex-start;
+.project-modal-content{
+  max-width:1100px;
+  max-height:88vh;
+  overflow-y:auto;
+  position:relative;
+  padding:0;
+}
+
+.project-close{
+  position:absolute;
+  top:20px;
+  right:20px;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,255,255,.25);
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+  transition:.3s;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.project-close:hover{
+  background:#6d3cff;
+  border-color:#6d3cff;
+  transform:rotate(90deg);
+}
+
+.project-modal-grid{
+  display:flex;
   flex-wrap:wrap;
+  gap:35px;
+  padding:45px 40px 30px;
   align-items:flex-start;
-  gap:25px;
 }
 
-.project-modal-body img{
-  flex:1 1 280px;
-  max-width:380px;
-  width:100%;
-  height:auto;
-  max-height:none;
-  border-radius:14px;
-  object-fit:cover;
-}
-
-.project-modal-info{
-  flex:1 1 260px;
+.project-modal-left{
+  flex:1 1 380px;
   text-align:left;
 }
 
-.project-modal-info .badge{
+.project-modal-left .badge{
   position:static;
   display:inline-block;
-  margin-bottom:14px;
-}
-
-.project-modal-info p{
-  color:#ccc;
-  line-height:1.7;
+  background:rgba(168,85,247,.14);
+  border:1px solid rgba(168,85,247,.5);
+  color:#c9a6ff;
+  padding:6px 16px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
   margin-bottom:16px;
 }
 
-.project-modal-info .tech{
-  color:#999;
-  margin-bottom:22px;
-  font-size:13px;
+.project-modal-left .badge.processing{
+  background:rgba(249,115,22,.14);
+  border:1px solid rgba(249,115,22,.5);
+  color:#fbbf7d;
 }
 
-.project-modal-info .primary{
+.project-modal-title{
+  font-size:30px;
+  font-weight:800;
+  margin-bottom:14px;
+  color:#fff;
+  line-height:1.25;
+}
+
+.project-modal-title span{
+  background:linear-gradient(45deg,#6a5cff,#a855f7);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.project-modal-tagline{
+  color:#bbb;
+  line-height:1.7;
+  margin-bottom:8px;
+  font-size:15px;
+}
+
+.pm-heading{
+  color:#a855f7;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.3px;
+  margin-bottom:12px;
+  margin-top:24px;
+}
+
+.pm-overview{
+  color:#aaa;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.pm-tech-stack{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.pm-tech-stack .tech-chip{
+  flex:0 0 auto;
+}
+
+.pm-features{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.pm-features li{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#ddd;
+  font-size:14px;
+}
+
+.pm-features li i{
+  color:#4ade80;
+  font-size:17px;
+  flex-shrink:0;
+}
+
+.pm-links{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.pm-live-btn{
   display:inline-flex;
   align-items:center;
   gap:8px;
+  background:linear-gradient(45deg,#6a5cff,#a855f7);
+  color:#fff;
+  padding:12px 22px;
+  border-radius:12px;
+  font-weight:600;
+  font-size:14px;
+  transition:.3s;
+}
+
+.pm-live-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 20px rgba(124,77,255,.5);
+}
+
+.project-modal-right{
+  flex:1 1 380px;
+  align-self:flex-start;
+}
+
+.project-modal-right img{
+  width:100%;
+  aspect-ratio:16/9;
+  height:auto;
+  object-fit:cover;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 0 40px rgba(0,0,0,.4);
+}
+
+.project-modal-footer{
+  position:sticky;
+  bottom:0;
+  background:#111827;
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:18px 40px;
 }
 
 /* =========================================================
@@ -2540,7 +2657,11 @@ h1 span{
   .modal-header h2{ font-size:18px; }
   .modal-content{ width:95%; }
 
-  .project-modal-body img{ max-width:100%; }
+  .project-modal-grid{ flex-direction:column; padding:55px 20px 20px; gap:22px; }
+  .project-modal-left,
+  .project-modal-right{ flex:1 1 auto; align-self:auto; }
+  .project-modal-footer{ padding:16px 20px; }
+  .project-modal-title{ font-size:24px; }
 
   .footer{ padding:20px; }
 

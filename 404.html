@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - Page Not Found | Pranav Jadhav</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<style>
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  body{
+    font-family:'Poppins', sans-serif;
+    background:radial-gradient(circle at top,#0b0f2a,#050816);
+    color:#fff;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    position:relative;
+    isolation:isolate;
+    padding:20px;
+  }
+
+  /* ---------- Ambient glowing orbs ---------- */
+  .glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(110px);
+    z-index:-2;
+    opacity:.55;
+    animation:drift 9s ease-in-out infinite alternate;
+  }
+  .glow.one{
+    width:380px; height:380px;
+    background:#6a5cff;
+    top:-100px; left:-100px;
+  }
+  .glow.two{
+    width:420px; height:420px;
+    background:#a855f7;
+    bottom:-120px; right:-100px;
+    animation-delay:1.5s;
+  }
+
+  @keyframes drift{
+    from{ transform:translate(0,0) scale(1); }
+    to{ transform:translate(30px,-20px) scale(1.08); }
+  }
+
+  /* ---------- Twinkling starfield ---------- */
+  .stars, .stars2{
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20% 30%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 70% 20%, #fff, transparent),
+      radial-gradient(1px 1px at 40% 70%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 85% 60%, #fff, transparent),
+      radial-gradient(1px 1px at 10% 85%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 60% 90%, #fff, transparent),
+      radial-gradient(1px 1px at 90% 15%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 30% 55%, #fff, transparent);
+    opacity:.5;
+    animation:twinkle 3.5s ease-in-out infinite alternate;
+  }
+  .stars2{
+    background-size:220px 220px;
+    animation-duration:5s;
+    animation-delay:.8s;
+    opacity:.3;
+  }
+
+  @keyframes twinkle{
+    from{ opacity:.2; }
+    to{ opacity:.65; }
+  }
+
+  /* ---------- Content ---------- */
+  .content{
+    text-align:center;
+    max-width:560px;
+    animation:fadeUp .8s ease both;
+  }
+
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(25px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .orbit-wrap{
+    position:relative;
+    width:fit-content;
+    margin:0 auto 10px;
+  }
+
+  h1.error-code{
+    font-size:130px;
+    font-weight:800;
+    line-height:1;
+    background:linear-gradient(45deg,#6a5cff,#a855f7,#6a5cff);
+    background-size:200% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:shine 4s linear infinite, float 3.5s ease-in-out infinite;
+    letter-spacing:4px;
+  }
+
+  @keyframes shine{
+    to{ background-position:200% center; }
+  }
+
+  @keyframes float{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-12px); }
+  }
+
+  .satellite{
+    position:absolute;
+    top:8px;
+    right:-18px;
+    font-size:30px;
+    color:#a855f7;
+    animation:orbit 5s linear infinite;
+    filter:drop-shadow(0 0 10px rgba(168,85,247,.7));
+  }
+
+  @keyframes orbit{
+    from{ transform:rotate(0deg) translateX(90px) rotate(0deg); }
+    to{ transform:rotate(360deg) translateX(90px) rotate(-360deg); }
+  }
+
+  h2{
+    font-size:26px;
+    font-weight:700;
+    margin:18px 0 12px;
+  }
+
+  h2 span{
+    background:linear-gradient(45deg,#6a5cff,#a855f7);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+
+  p{
+    color:#aaa;
+    line-height:1.7;
+    margin-bottom:32px;
+    font-size:15px;
+  }
+
+  .btn-row{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:13px 26px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:14px;
+    text-decoration:none;
+    cursor:pointer;
+    border:none;
+    font-family:inherit;
+    transition:.3s;
+  }
+
+  .btn.primary{
+    background:linear-gradient(45deg,#6a5cff,#a855f7);
+    color:#fff;
+  }
+
+  .btn.primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 25px rgba(124,77,255,.55);
+  }
+
+  .btn.secondary{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.15);
+    color:#fff;
+  }
+
+  .btn.secondary:hover{
+    background:rgba(255,255,255,.1);
+    transform:translateY(-3px);
+  }
+
+  .status-note{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:30px;
+    padding:8px 16px;
+    border-radius:20px;
+    background:rgba(249,115,22,.14);
+    border:1px solid rgba(249,115,22,.5);
+    color:#fbbf7d;
+    font-size:12.5px;
+    font-weight:600;
+  }
+
+  .status-note i{
+    font-size:15px;
+  }
+
+  @media(max-width:520px){
+    h1.error-code{ font-size:90px; }
+    .satellite{ right:-8px; font-size:24px; }
+    @keyframes orbit{
+      from{ transform:rotate(0deg) translateX(60px) rotate(0deg); }
+      to{ transform:rotate(360deg) translateX(60px) rotate(-360deg); }
+    }
+    h2{ font-size:21px; }
+  }
+
+</style>
+</head>
+<body>
+
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+
+  <div class="content">
+
+    <div class="orbit-wrap">
+      <h1 class="error-code">404</h1>
+      <i class='bx bxs-rocket satellite'></i>
+    </div>
+
+    <h2>This project is still <span>taking off</span> 🚀</h2>
+
+    <p>
+      This live link isn't ready yet — the project is still in development.
+      Check back soon, or head back to explore my other work in the meantime.
+    </p>
+
+    <div class="btn-row">
+      <a href="index.html" class="btn primary"><i class='bx bx-home-alt-2'></i> Back to Home</a>
+      <a href="index.html#projects" class="btn secondary"><i class='bx bx-folder'></i> View Projects</a>
+    </div>
+
+    <div class="status-note">
+      <i class='bx bx-loader-alt'></i> Currently in progress
+    </div>
+
+  </div>
+
+</body>
+</html>
