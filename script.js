@@ -310,6 +310,48 @@ document.addEventListener('DOMContentLoaded', () => {
   ========================================================= */
   const projectsData = [
     {
+      id: 'pranavwebstudio',
+      title: 'Pranav Web Studio',
+      badge: 'In Progress',
+      desc: 'My own web development business website, where I help clients get modern, professional websites built for their brand.',
+      overview: 'My own web development business website, built to showcase my services and help clients get modern, professional websites built for their brand.',
+      tech: [
+        { cls: 'react', icon: 'bxl-react', label: 'React' },
+        { cls: 'tailwind', icon: 'bxl-tailwind-css', label: 'Tailwind CSS' },
+        { cls: 'typescript', icon: 'bxl-typescript', label: 'TypeScript' }
+      ],
+      features: ['Service Showcase', 'Client Inquiry Form', 'Modern UI Design', 'Fully Responsive'],
+      image: './images/pranavwebstudio.png',
+      live: 'https://pranav-webstudio.netlify.app/'
+    },
+    {
+      id: 'maison-doree',
+      title: 'Maison Doree Bakery',
+      badge: 'In Progress',
+      desc: 'A premium online bakery website designed to showcase cakes, enable custom cake orders, and provide a complete online shopping experience.',
+      overview: 'A modern and elegant bakery e-commerce website built for Maison Dorée, featuring a curated cake collection, custom cake builder, occasion-based browsing, offers, cart, checkout, order tracking and customer account management.',
+      tech: [
+        { cls: 'html', icon: 'bxl-html5', label: 'HTML' },
+        { cls: 'css', icon: 'bxl-css3', label: 'CSS' },
+        { cls: 'js', icon: 'bxl-javascript', label: 'JavaScript' }
+      ],
+      features: [
+        'Cake Product Showcase',
+        'Custom Cake Builder',
+        'Search & Filters',
+        'Shopping Cart',
+        'Multi-step Checkout',
+        'Multiple Payment Options',
+        'Order Tracking',
+        'Customer Account',
+        'Wishlist & Rewards',
+        'Offers & Coupons',
+        'Responsive UI'
+      ],
+      image: './images/maison-doree.png',
+      live: 'https://pws-maisondoree.netlify.app'
+    },
+    {
       id: 'salon',
       title: 'Salon Management System',
       badge: 'Complete',
@@ -338,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       features: ['Fully Responsive Design', 'Smooth Animations', 'Project Showcase', 'Contact Form'],
       image: './images/portfolio.png',
-      live: '404.html'
+      live: 'https://pranavjadhav-portfolio.netlify.app/'
     },
     {
       id: 'bakery',
@@ -369,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       features: ['Cinematic 3D Animations', 'Smooth Scroll Experience', 'Villa Booking Showcase', 'Fully Responsive Design'],
       image: './images/villa%20website.png',
-      live: '404.html'
+      live: 'https://aurelia-luxury-estate.netlify.app'
     },
     {
       id: 'visionarc',
@@ -384,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       features: ['Product Showcase Gallery', 'Responsive Design', 'Smooth Hover Effects', 'Clean, Elegant UI'],
       image: './images/visionarc.png',
-      live: '404.html'
+      live: 'https://visionarc-opticians.netlify.app/'
     },
     {
       id: 'veloria',
@@ -402,20 +444,28 @@ document.addEventListener('DOMContentLoaded', () => {
       live: '404.html'
     },
     {
-      id: 'pranavwebstudio',
-      title: 'Pranav Web Studio',
-      badge: 'In Progress',
-      desc: 'My own web development business website, where I help clients get modern, professional websites built for their brand.',
-      overview: 'My own web development business website, built to showcase my services and help clients get modern, professional websites built for their brand.',
+      id: 'mohitdecodes',
+      title: 'Mohit Decodes',
+      badge: 'Complete',
+      desc: 'A modern learning and developer platform designed to help developers learn, build real-world projects and grow their careers.',
+      overview: 'A professional developer education platform featuring courses, tutorials, resources, roadmaps, projects, blogs and career-focused content, designed with a modern and engaging user experience.',
       tech: [
         { cls: 'react', icon: 'bxl-react', label: 'React' },
-        { cls: 'tailwind', icon: 'bxl-tailwind-css', label: 'Tailwind CSS' },
-        { cls: 'typescript', icon: 'bxl-typescript', label: 'TypeScript' }
+        { cls: 'vite', icon: 'bxs-bolt', label: 'Vite' }
       ],
-      features: ['Service Showcase', 'Client Inquiry Form', 'Modern UI Design', 'Fully Responsive'],
-      image: './images/pranavwebstudio.png',
-      live: '404.html'
-    }
+      features: [
+        'Live YouTube Subscriber Count',
+        'Dark / Light Theme Toggle',
+        'Site-wide Search',
+        'Developer Roadmaps',
+        'Blogs Section',
+        'Free Resources',
+        'Newsletter Signup',
+        'Fully Responsive'
+      ],
+      image: './images/mohit-decodes.png',
+      live: 'https://mohitdecodes-website.netlify.app'
+    },
   ];
 
   const projectModal = document.getElementById('projectModal');

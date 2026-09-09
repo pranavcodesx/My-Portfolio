@@ -1485,8 +1485,11 @@ h1 span{
 }
 
 .status-badge i{
+  display:inline-flex;
+  align-items:center;
   color:#4ade80 !important;
   font-size:16px !important;
+  line-height:0;
   margin:0;
 }
 
@@ -1744,8 +1747,13 @@ h1 span{
   max-width:1100px;
   max-height:88vh;
   overflow-y:auto;
+  scrollbar-width:none;
   position:relative;
   padding:0;
+}
+
+.project-modal-content::-webkit-scrollbar{
+  display:none;
 }
 
 .project-close{
