@@ -310,9 +310,26 @@ document.addEventListener('DOMContentLoaded', () => {
   ========================================================= */
   const projectsData = [
     {
+      id: 'professional-portfolio',
+      title: 'Professional Portfolio',
+      badge: 'Complete',
+      desc: 'A comprehensive showcase of projects, skills, education and career journey, built with a focus on modern UI/UX and performance.',
+      overview: 'A polished personal portfolio designed to present projects, skills, academic achievements, certifications and professional background through a modern, performance-focused interface with smooth interactions and a clean visual identity.',
+      tech: [
+        { cls: 'react', icon: 'bxl-react', label: 'React' },
+        { cls: 'typescript', icon: 'bxl-typescript', label: 'TypeScript' },
+        { cls: 'tailwind', icon: 'bxl-tailwind-css', label: 'Tailwind CSS' },
+        { cls: 'framer', icon: 'bxs-magic-wand', label: 'Framer Motion' },
+        { cls: 'three', icon: 'bx-cube', label: 'Three.js' }
+      ],
+      features: ['Modern Portfolio Layout', 'Project Showcase', 'Skills & Education Sections', 'Career Journey Highlights', 'Smooth Motion & Interactions', 'Responsive Design'],
+      image: './images/professional-portfolio.png',
+      live: 'https://professional-pranav-portfolio.netlify.app'
+    },
+    {
       id: 'pranavwebstudio',
       title: 'Pranav Web Studio',
-      badge: 'In Progress',
+      badge: 'Complete',
       desc: 'My own web development business website, where I help clients get modern, professional websites built for their brand.',
       overview: 'My own web development business website, built to showcase my services and help clients get modern, professional websites built for their brand.',
       tech: [
